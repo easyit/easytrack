@@ -1,0 +1,45 @@
+
+extends layout
+
+block scripts
+	script(src='/lib/jquery-validate/jquery.validate.min.js')
+	script(src='/lib/jquery.form.js')
+
+	script(src='/js/views/login.js')
+	script(src='/js/controllers/loginController.js')
+	script(src='/js/form-validators/loginValidator.js')
+
+block content
+
+	div.container
+		div.row
+			div.offset4.span4.well
+				form#sign-in-form(action="/login", method="POST")  
+					fieldset
+						legend Sign In 
+						
+						div.control-group
+							label.control-label(for="user") Username
+							div.controls
+								input#user.input-xlarge(type="text",  name="user",rel="popover", data-content="Enter your username.", data-original-title="Username" )
+										
+						div.control-group
+							label.control-label(for="pass") Password
+							div.controls
+								input#pass.input-xlarge(type="password", name="pass" )
+						
+						div.control-group
+							label.control-label(for="sumbit") 
+							div.controls
+								button.btn.btn-success(type="sumbit") 
+									i.icon-lock.icon-white
+									| Sign In &raquo
+								label#remember-me.checkbox Remember Me
+									input(type="checkbox", checked='checked')
+						hr
+						div.btm-links
+							a#forgot-password(href='/lost-password') Forgot Your Password?
+
+	include modals/alert
+
+
