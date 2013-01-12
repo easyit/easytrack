@@ -1,0 +1,22 @@
+[
+    {
+        "label": "Moving   - ",
+        "data": 4,
+        "color": "green"
+    },
+    {
+        "label": "Idle     - ",
+        "data": 5,
+        "color": "yellow"
+    },
+    {
+        "label": "Stop     - ",
+        "data": 9,
+        "color": "red"
+    },
+    {
+        "label": "Inactive - ",
+        "data": 6,
+        "color": "gray"
+    }
+]
