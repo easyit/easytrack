@@ -65,6 +65,20 @@ exports.home = function(req, res){
 };
 
 /*
+ * Vehicle monitoring dashboard
+ */
+exports.vmd = function(req, res){
+	if (req.session.user == null){
+	// if user is not logged-in redirect back to login page //
+		res.redirect('/');
+	}   else{
+		res.render("vmd", {
+					title : 'VMD',
+					udata : req.session.user} );
+	}
+};
+
+/*
  * Post Logout from system
  */
 exports.logoutP= function(req, res){

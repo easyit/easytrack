@@ -3,8 +3,6 @@ extends layout
 block scripts
 	script(src='/js/views/home.js')
 	script(src='/js/controllers/logoutController.js')
-	link(rel='stylesheet', href='/lib/dataTables/media/css/jquery.dataTables.css')
-	script(src='/lib/dataTables/media/js/jquery.dataTables.min.js')
 
 	script(language="javascript", type="text/javascript", src="/lib/flot/jquery.flot.js")
 	script(language="javascript", type="text/javascript", src="/lib/flot/jquery.flot.pie.js")
@@ -15,10 +13,7 @@ block scripts
 block content
 	include menu
 	- user = typeof(udata) != 'undefined' ? udata : {}
-	div.container
-		div.row
-			include dashboard/vehicles
-		hr
+	div.container	
 		div.row
 			div.box
 				div.heading 

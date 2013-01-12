@@ -6,8 +6,14 @@ div
 		div.navbar-inner
 			ul.nav.nav-pills
 			
-				li.active
-					a(href="#") Home
+				li.active.dropdown
+					a.dropdown-toggle(data-toggle="dropdown", href="#") Dashboard
+						b.caret
+					ul.dropdown-menu
+						li
+							a(href="/home") Vehicle Polling Status	
+						li
+							a(href="/vmd") Vehicel Monitoring Dashboard
 
 				li.divider-vertical
 				li.dropdown
