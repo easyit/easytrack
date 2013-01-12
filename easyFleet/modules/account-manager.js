@@ -30,7 +30,7 @@ var accounts = db.collection('fleet.Users');
 
 exports.autoLogin = function(user, pass, callback)
 {
-	accounts.findOne({username:user}, function(e, o) {
+	accounts.findOne({user:user}, function(e, o) {
 		if (o){
 			o.pass == pass ? callback(o) : callback(null);
 		}	else{
@@ -41,20 +41,17 @@ exports.autoLogin = function(user, pass, callback)
 
 exports.manualLogin = function(user, pass, callback)
 {
-	accounts.findOne({username:user}, function(e, o) {
+	accounts.findOne({user:user}, function(e, o) {
 		if (o == null){
 			callback('user-not-found');
 		}	else{
-			// validatePassword(pass, o.pass, function(err, res) {
-			// 	if (res){
-			// 		callback(null, o);
-			// 	}	else{
-			// 		callback('invalid-password');
-			// 	}
-			// });
-
-	//HY TEST CODE ///
-			callback('invalid-password');
+			validatePassword2(pass, o.pass, function(err, res) {
+				if (res){
+					callback(null, o);
+				}	else{
+					callback('invalid-password');
+				}
+			});
 		}
 	});
 }
@@ -171,6 +168,11 @@ var validatePassword = function(plainPass, hashedPass, callback)
 	var salt = hashedPass.substr(0, 10);
 	var validHash = salt + md5(plainPass + salt);
 	callback(null, hashedPass === validHash);
+}
+
+var validatePassword2 = function(plainPass, hashedPass, callback)
+{	
+	callback(null, hashedPass === plainPass);
 }
 
 /* auxiliary methods */

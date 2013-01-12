@@ -53,6 +53,7 @@ app.configure('development', function(){
 app.get('/', routes.index);
 //app.get('/login',  routes.login);
 app.post('/login', routes.loginP);
+app.post('/logout', routes.logoutP);
 app.get('/home', routes.home);
 //app.get('/logout', logins.logout);
 app.get('/users', user.list);
