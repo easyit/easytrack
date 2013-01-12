@@ -4,16 +4,17 @@ block scripts
 	script(src='/js/views/dashboard/vmd.js')
 	script(src='/js/controllers/logoutController.js')
 
-	link(rel='stylesheet', href='/lib/dataTables/media/css/jquery.dataTables.css')
+	//link(rel='stylesheet', href='/lib/dataTables/media/css/jquery.dataTables.css')
+	link(rel='stylesheet', href='/lib/DT_bootstrap/DT_bootstrap.css')
 	script(language="javascript", type="text/javascript", src='/lib/dataTables/media/js/jquery.dataTables.min.js')
+	script(language="javascript", type="text/javascript", src='/lib/DT_bootstrap/DT_bootstrap.js')
 
 
 block content
 	include menu
 	- user = typeof(udata) != 'undefined' ? udata : {}
 	div.container
-		div.row
-			include dashboard/vehicles
+		include dashboard/vehicles
 
 	include modals/alert
 	include modals/confirm
