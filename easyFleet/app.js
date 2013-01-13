@@ -56,6 +56,7 @@ app.post('/login', routes.loginP);
 app.post('/logout', routes.logoutP);
 app.get('/home', routes.home);
 app.get('/vmd', routes.vmd);
+app.get('/maptracking', routes.maptracking);
 //app.get('/logout', logins.logout);
 app.get('/users', user.list);
 

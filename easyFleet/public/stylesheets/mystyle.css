@@ -186,3 +186,10 @@
 	width: 49%;
 	margin-bottom: 20px;
 }
+
+/*google map*/
+.dark { background:#2a3333; }
+.light { background:#fff; }
+.item { padding:1em; margin:0 0 2em; }
+.rounded { border-radius: 8px; -moz-border-radius: 8px; -webkit-border-radius: 8px; -khtml-border-radius: 8px; }
+.shadow { -moz-box-shadow: 0px 2px 4px #999; -webkit-box-shadow: 0px 2px 4px #999; box-shadow: 0px 2px 4px #999; }
