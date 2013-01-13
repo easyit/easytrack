@@ -2,7 +2,7 @@
 $(document).ready(function(){
     var logoutController = new LogoutController();
 
-    $('#map_canvas').gmap({'disableDefaultUI':true, 'callback': function() {
+    $('#map_canvas').gmap({'disableDefaultUI':false, 'callback': function() {
         var self = this;
         $.getJSON( '/data/demo.json', function(data) { 
             $.each( data.markers, function(i, marker) {
