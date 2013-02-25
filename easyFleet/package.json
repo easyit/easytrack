@@ -13,6 +13,7 @@
     "connect-mongodb": "*",
     "mongoskin": "*",
     "crypto": "*",
-    "moment": "*"
+    "moment": "*",
+    "socket.io": "*"
   }
 }
