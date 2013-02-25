@@ -1,18 +1,39 @@
 extends layout
 
 block scripts
-	script(src='/js/views/tracking/maptracking.js')
+	link(rel='stylesheet', href='/stylesheets/map_drawing_tools.css')
 	script(src='/js/controllers/logoutController.js')
+	script(src='/js/controllers/VehicleEventMapController.js')
 
 	script(type="text/javascript", src="http://maps.google.com/maps/api/js?sensor=false")
 	script(type="text/javascript", src="/lib/jquery-ui-map/jquery.ui.map.min.js")
- 
+	script(type="text/javascript", src="/lib/jsonStringify.js")
 
+	script(type="text/javascript", src='/lib/map-extra/markerwithlabel_packed.js')
+	script(type="text/javascript", src='/js/views/tracking/maptracking.js')
+
+	link(rel='stylesheet', href='http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css')
+	script(type="text/javascript", src='http://code.jquery.com/ui/1.10.0/jquery-ui.js')
+	link(rel='stylesheet', href='/lib/jquery-addon/jquery-ui-timepicker-addon.css')
+	script(type="text/javascript", src='/lib/jquery-addon/jquery-ui-timepicker-addon.js')
+
+	
 
 block content
 	include menu
 	- user = typeof(udata) != 'undefined' ? udata : {}
 	div.container
+		ul.breadcrumb
+			li
+				a(href="/home") Home
+				span.divider /
+			li
+				a(href="#") Tracking
+				span.divider /
+			li.active Tracking On Map
+				
+
+		include event_selection
 		div.offset2.rounded.item.dark
 				div#map_canvas(style="height: 400px;")
 
