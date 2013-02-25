@@ -1,0 +1,47 @@
+table.table.table-hover
+    tbody
+        tr
+            td
+                span.required *
+                | Vehicle Name
+            td
+                input#vehiclename(style="width:159px;", type="text")
+        tr
+            td
+                span.required *
+                | Event Type
+            td
+                select#select_event_type(style="width:159px;", type="text")
+                    option(value="0") OverSpeed
+                    option(value="1") Boundary
+                    option(value="2") Other
+        tr
+            td
+                span.required *
+                | Event Type
+            td
+                div.btn-group(data-toggle="buttons-checkbox")
+                    button.btn OverSpeed
+                    button.btn Boundary
+                    button.btn Other
+
+        tr
+            td
+                span.required *
+                | From
+            td
+                div.ui-timepicker-div
+                    input#from(type="text")
+        tr
+            td
+                span.required *
+                | To
+            td
+                div.ui-timepicker-div
+                    input#to(type="text")
+
+
+        tr
+            td
+            td(colspan="2", align="right")
+                button.btn.btn-primary#report-button(onclick="GenerateReport()") Generate Report

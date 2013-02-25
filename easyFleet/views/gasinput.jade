@@ -1,0 +1,28 @@
+table.table.table-hover
+    tbody
+        tr
+            td
+                span.required *
+                | Vehicle Name
+            td
+                input#device_imei(style="width:159px;", type="text", value='123456789012345')
+        tr
+            td
+                span.required *
+                | Reading
+            td
+                input#gas_reading(style="width:159px;", type="text", value='50')
+
+        //- tr
+        //-     td
+        //-         span.required *
+        //-         | Date 
+        //-     td
+        //-         div.ui-timepicker-div
+        //-             input#date(type="text")
+
+
+        tr
+            td
+            td(colspan="2", align="right")
+                button.btn.btn-primary#report-button(onclick="SubmitData()") Submit

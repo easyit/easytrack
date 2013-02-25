@@ -1,0 +1,16 @@
+extends layout
+
+block scripts
+	script(src='/lib/socket.io/socket.io.min.js')
+	script(src='/js/gas/client/gasController.js')
+
+block content
+	include menu
+	- user = typeof(udata) != 'undefined' ? udata : {}
+	div.container
+		include gasinput
+
+
+	include modals/alert
+	include modals/confirm
+		

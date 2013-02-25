@@ -1,0 +1,29 @@
+table.table.table-hover
+    tbody
+        tr
+            td
+                span.required *
+                | Geofence Name
+            td
+                input#geofencename(style="width:159px;", type="text")
+        tr
+            td
+                span.required *
+                | Geofence Type
+            td
+                select#geofencetype(style="width:159px;", type="text")
+                    option(value="0") Office
+                    option(value="1") Customer
+                    option(value="2") Other
+        tr
+            td Select Color
+            td
+                div#color-palette
+        tr
+            td
+            td(colspan="2", align="right")
+                button.btn.btn-primary(onclick="UpdateGeofences()") Search by Coordinates
+        tr
+            td
+            td(colspan="2", align="right")
+                button.btn.btn-primary#delete-button Delete Selected Shape

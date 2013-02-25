@@ -1,0 +1,22 @@
+extends layout
+
+block scripts
+	script(src='/js/gas/views/gas.js')
+	script(src='/js/controllers/logoutController.js')
+
+	link(rel='stylesheet', href='/lib/DT_bootstrap/DT_bootstrap.css')
+	script(language="javascript", type="text/javascript", src='/lib/dataTables/media/js/jquery.dataTables.min.js')
+	script(language="javascript", type="text/javascript", src='/lib/DT_bootstrap/DT_bootstrap.js')
+
+
+block content
+	include menu
+	- user = typeof(udata) != 'undefined' ? udata : {}
+	div.container
+		table#vehicles_table.dataTable.table.table-striped.table-bordered(cellpadding="0", cellspacing="0", border="0")
+
+		//- include dashboard/vehicles
+
+	include modals/alert
+	include modals/confirm
+		
