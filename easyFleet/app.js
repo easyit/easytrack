@@ -26,6 +26,7 @@ global.fmsDb = mongo.db(fmsConfig.mongodb.host + ':' + fmsConfig.mongodb.port + 
 var app = express();
 
 
+
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/views');
@@ -57,9 +58,39 @@ app.post('/logout', routes.logoutP);
 app.get('/home', routes.home);
 app.get('/vmd', routes.vmd);
 app.get('/maptracking', routes.maptracking);
+app.get('/speedexception', routes.speedexception);
 //app.get('/logout', logins.logout);
-app.get('/users', user.list);
+app.get('/server_processing', routes.server_processing);
+app.get('/geofence',routes.geofence_editor);
 
-http.createServer(app).listen(app.get('port'), function(){
+app.get('/ReportService',routes.report_service);
+
+app.get('/GasReport', routes.gasreport);
+app.get('/GasClient', routes.gasclient);
+app.get('/gas_processing', routes.gas_processing);
+
+var server = http.createServer(app);
+
+//===========================================================
+var io = require('socket.io').listen(server);
+var GM = require('./modules/gas-manager');
+
+io.sockets.on('connection', function (socket) {
+    console.log('A socket connected!');
+
+    socket.emit('gasdata', 'data1', 'data2');
+
+    socket.on('gasdata', function (data) {
+      console.log(data);
+      GM.addNewData(data, function(e,o) {
+
+      });
+    });
+});
+//===============================================================
+
+server.listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });
+
+

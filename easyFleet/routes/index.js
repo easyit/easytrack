@@ -1,6 +1,8 @@
 // 'use strict'
 
 var AM = require('../modules/account-manager');
+var DM = require('../modules/data-manager');
+var GM = require('../modules/gas-manager');
 
 /*
  * GET root page.
@@ -49,6 +51,27 @@ exports.loginP = function(req, res){
 		});
 };
 
+/*
+ * Post Logout from system
+ */
+exports.logoutP= function(req, res){
+
+	console.log("Logout...");
+
+	res.clearCookie('user');
+	res.clearCookie('pass');
+	req.session.destroy(function(e){ res.send('ok', 200); });
+
+	if (req.session.user == null){
+	// if user is not logged-in redirect back to login page //
+		res.redirect('/');
+	}   else{
+		res.render('home', {
+					title : 'Home',
+					udata : req.session.user} );
+	}
+};
+
 
 /*
  * GET logged-in user homepage 
@@ -92,26 +115,164 @@ exports.maptracking = function(req, res){
 	}
 };
 
+
 /*
- * Post Logout from system
+ * Speed Exception General Report...
  */
-exports.logoutP= function(req, res){
-
-	console.log("Logout...");
-
-	res.clearCookie('user');
-	res.clearCookie('pass');
-	req.session.destroy(function(e){ res.send('ok', 200); });
-
+exports.speedexception = function(req, res){
 	if (req.session.user == null){
 	// if user is not logged-in redirect back to login page //
 		res.redirect('/');
 	}   else{
-		res.render('home', {
-					title : 'Home',
+		res.render("speedexception", {
+					title : 'Speed Exception',
 					udata : req.session.user} );
 	}
 };
 
+exports.server_processingP = function(req, res){
+	if (req.session.user == null){
+	// if user is not logged-in redirect back to login page //
+		res.redirect('/');
+	}   else{
+		var iDisplayStart = parseInt(req.body.iDisplayStart);
+		var iDisplayLength = parseInt(req.body.iDisplayLength);
+		console.log(iDisplayStart);
+		console.log(iDisplayLength);
+
+		DM.getAllRecords( iDisplayStart, iDisplayLength, function(e, o){
+			if (o)
+			{
+				var output = {
+					iTotalRecords: iDisplayLength,
+					iTotalDisplayRecords: iDisplayLength,
+					aaData: o
+				};
+
+				res.json(output);
+			}
+		});
+
+	}
+};
+
+exports.server_processing = function(req, res){
+	if (req.session.user == null){
+	// if user is not logged-in redirect back to login page //
+		res.redirect('/');
+	}   else{
+		var iDisplayStart = parseInt(req.param('iDisplayStart'));
+		var iDisplayLength = parseInt(req.param('iDisplayLength'));
+		console.log(iDisplayStart);
+		console.log(iDisplayLength);
+
+		DM.getAllRecords( iDisplayStart, iDisplayLength, function(e, o){
+			if (o)
+			{
+				var output = {
+					iTotalRecords: 100000,
+					iTotalDisplayRecords: 100000,
+					aaData: o
+				};
+
+				res.json(output);
+			}
+		});
+
+	}
+};
+
+/*
+ * Geofence list...
+ */
+exports.geofence_editor = function(req, res){
+	if (req.session.user == null){
+	// if user is not logged-in redirect back to login page //
+		res.redirect('/');
+	}   else{
+		res.render("geofence_editor", {
+					title : 'Geo Fence',
+					udata : req.session.user} );
+	}
+};
+
+exports.report_service= function(req, res){
+	if (req.session.user == null){
+	// if user is not logged-in redirect back to login page //
+		res.redirect('/');
+	}   else{
+		
+		var json = JSON.parse(req.param('json'));
+
+		console.log(JSON.stringify(json));
+
+		DM.getRecords( json, 0, 1000, function(e, o){
+			if (o)
+			{
+				var output = {
+					iTotalRecords: 100000,
+					iTotalDisplayRecords: 100000,
+					aaData: o
+				};
+
+				res.json(output);
+			}
+		});
+
+	}
+};
+
+
+/*
+ * Gas Report
+ */
+exports.gasreport = function(req, res){
+	if (req.session.user == null){
+	// if user is not logged-in redirect back to login page //
+		res.redirect('/');
+	}   else{
+		res.render("gasreport", {
+					title : 'Gas Report',
+					udata : req.session.user} );
+	}
+};
+
+
+exports.gasclient = function(req, res){
+	if (req.session.user == null){
+	// if user is not logged-in redirect back to login page //
+		res.redirect('/');
+	}   else{
+		res.render("gasclient", {
+					title : 'Gas Client',
+					udata : req.session.user} );
+	}
+};
+
+exports.gas_processing = function(req, res){
+	if (req.session.user == null){
+	// if user is not logged-in redirect back to login page //
+		res.redirect('/');
+	}   else{
+		var iDisplayStart = parseInt(req.param('iDisplayStart'));
+		var iDisplayLength = parseInt(req.param('iDisplayLength'));
+		console.log(iDisplayStart);
+		console.log(iDisplayLength);
+
+		GM.getAllRecords( iDisplayStart, iDisplayLength, function(e, o){
+			if (o)
+			{
+				var output = {
+					iTotalRecords: o.length,
+					iTotalDisplayRecords: o.length,
+					aaData: o
+				};
+
+				res.json(output);
+			}
+		});
+
+	}
+};
 
 
